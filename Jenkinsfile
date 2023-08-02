@@ -4,11 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                agent {
-                    docker {
-                        image 'openjdk:11'
-                    }
-                }
                 // 下载 Gradle Wrapper
                 sh 'chmod +x gradlew'
                 sh "./gradlew wrapper"                
