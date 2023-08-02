@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // 下载 Gradle Wrapper
+                // Gradle Wrapper
                 sh 'chmod +x gradlew'
                 sh "./gradlew wrapper"                
-                // 构建项目
+                // build
                 sh "./gradlew build"
             }
         }
         
         stage('SonarQube Analysis') {
             steps {
-                // 安装 SonarQube Scanner 插件
+                // SonarQube Scanner
                 withSonarQubeEnv('SonarQube Server') {
-                    // 进行 SonarQube 分析
+                    //  SonarQube 
                     sh 'chmod +x gradlew'
                     sh "./gradlew sonarqube"
                 }
