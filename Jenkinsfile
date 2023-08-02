@@ -16,7 +16,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // 安装 SonarQube Scanner 插件
-                withSonarQubeEnv('sonarqubeserver') {
+                withSonarQubeEnv('SonarQube Server') {
                     // 进行 SonarQube 分析
                     sh 'chmod +x gradlew'
                     sh "./gradlew sonarqube"
