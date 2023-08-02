@@ -15,7 +15,7 @@ pipeline{
             steps {
                 script{
                     // SonarQube Scanner
-                    withSonarQubeEnv(credentialsId: 'sonar-token') { //name of Server in Jenkins config
+                    withSonarQubeEnv(credentialsId: 'sonar-token') { //name of Token in Jenkins config
                         // SonarQube
                         sh 'chmod +x gradlew'
                         sh './gradlew sonarqube'
