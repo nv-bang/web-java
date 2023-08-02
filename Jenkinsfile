@@ -26,6 +26,7 @@ pipeline{
                 // SonarQube Scanner
                 withSonarQubeEnv('SonarQube Server') {
                     // SonarQube
+                    sh 'chmod +x gradlew'
                     sh './gradlew sonarqube'
                 }
             }
