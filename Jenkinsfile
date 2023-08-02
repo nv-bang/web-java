@@ -5,20 +5,7 @@ pipeline{
     }
 
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
-            steps {
-                // Gradle Wrapper
-                sh 'chmod +x gradlew'
-                sh './gradlew wrapper'
-                // Build
-                sh './gradlew build'
-            }
-        }
+
 
         stage('SonarQube Analysis') {
             steps {
