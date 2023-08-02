@@ -1,8 +1,7 @@
-pipeline {
-    agent any
-
-    environment {
-        GRADLE_USER_HOME = "${pwd()}/.gradle"
+pipeline{
+    agent any 
+    environment{
+        VERSION = "${env.BUILD_ID}"
     }
 
     stages {
