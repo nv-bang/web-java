@@ -7,12 +7,14 @@ pipeline{
     stages {
         stage('SonarQube Analysis') {
             steps {
+                scrip{
                 // SonarQube Scanner
                 withSonarQubeEnv('SonarQube Server') { //name of Server in config
                     // SonarQube
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube'
                 }
+            }
             }
         }
         stage('Build') {
