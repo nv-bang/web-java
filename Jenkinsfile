@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // 下载 Gradle Wrapper
+                sh 'chmod +x gradlew'
                 sh "./gradlew wrapper"
                 
                 // 构建项目
@@ -17,6 +18,7 @@ pipeline {
                 // 安装 SonarQube Scanner 插件
                 withSonarQubeEnv('sonarqubeserver') {
                     // 进行 SonarQube 分析
+                    sh 'chmod +x gradlew'
                     sh "./gradlew sonarqube"
                 }
             }
