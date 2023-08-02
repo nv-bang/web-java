@@ -6,7 +6,7 @@ pipeline{
     }
 
     stages {
-        stage('SonarQube Analysis') {
+        stage("sonar quality check") {
             steps {
                 script{
                     // SonarQube Scanner
