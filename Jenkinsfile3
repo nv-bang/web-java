@@ -7,11 +7,11 @@ pipeline{
 
     stages {
         stage("sonar quality check") {
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
+//            agent { //delete will run, failed in here
+ //               docker {
+ //                   image 'openjdk:11'
+ //               }
+ //           }
             steps {
                 script{
                     // SonarQube Scanner
