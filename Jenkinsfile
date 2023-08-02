@@ -7,7 +7,7 @@ pipeline{
     stages {
         stage('SonarQube Analysis') {
             steps {
-                scrip{
+                script{
                 // SonarQube Scanner
                 withSonarQubeEnv('SonarQube Server') { //name of Server in config
                     // SonarQube
