@@ -1,30 +1,24 @@
-pipeline{
-    agent any 
-    environment{
-        VERSION = "${env.BUILD_ID}"
-    }
-    stages{
-        stage("sonar quality check"){
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // 下载 Gradle Wrapper
+                sh "./gradlew wrapper"
+                
+                // 构建项目
+                sh "./gradlew build"
             }
-            steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
-                        sh 'chmod +x gradlew'    
-                       // sh './gradlew wrapper --gradle-version=7.1.1' 
-                        sh './gradlew --status'
-                        sh './gradlew sonarqube --status'
-                    }
-                    timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate()
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                      }
-                    }
-               }  
+        }
+        
+        stage('SonarQube Analysis') {
+            steps {
+                // 安装 SonarQube Scanner 插件
+                withSonarQubeEnv('sonarqubeserver') {
+                    // 进行 SonarQube 分析
+                    sh "./gradlew sonarqube"
+                }
             }
         }
     }
