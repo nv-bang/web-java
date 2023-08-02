@@ -1,16 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:11'
-            args '-v /tmp:/tmp'
-        }
-    }
+    agent any
 
     environment {
         GRADLE_USER_HOME = "${pwd()}/.gradle"
     }
 
     stages {
+        stage("sonar quality check"){
+            agent {
+                docker {
+                    image 'openjdk:11'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 // Gradle Wrapper
