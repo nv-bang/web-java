@@ -5,14 +5,12 @@ pipeline{
     }
 
     stages {
-        stage('sonar quality check'){
+        stage('Build') {
             agent {
                 docker {
                     image 'openjdk:11'
                 }
             }
-        }
-        stage('Build') {
             steps {
                 // Gradle Wrapper
                 sh 'chmod +x gradlew'
