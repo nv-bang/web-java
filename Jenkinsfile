@@ -5,8 +5,6 @@ pipeline{
     }
 
     stages {
-
-
         stage('SonarQube Analysis') {
             steps {
                 // SonarQube Scanner
@@ -15,6 +13,20 @@ pipeline{
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube'
                 }
+            }
+        }
+        stage('Build') {
+            agent {
+                docker {
+                    image 'openjdk:11'
+                }
+            }
+            steps {
+                // Gradle Wrapper
+                sh 'chmod +x gradlew'
+                sh './gradlew wrapper'
+                // Build
+                sh './gradlew build'
             }
         }
     }
