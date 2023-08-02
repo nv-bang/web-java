@@ -8,7 +8,7 @@ pipeline{
         stage('SonarQube Analysis') {
             steps {
                 // SonarQube Scanner
-                withSonarQubeEnv('SonarQube Server') {
+                withSonarQubeEnv('SonarQube Server') { //name of Server in config
                     // SonarQube
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube'
