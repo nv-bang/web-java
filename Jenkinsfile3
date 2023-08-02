@@ -7,7 +7,7 @@ pipeline{
 
     stages {
         stage("sonar quality check") {
-//            agent { //delete will run, failed in here
+//            agent { //delete will run, failed in here or move out this stage
  //               docker {
  //                   image 'openjdk:11'
  //               }
