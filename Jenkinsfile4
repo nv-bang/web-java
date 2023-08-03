@@ -23,20 +23,20 @@ pipeline{
                 }
             }
         }
-        stage('Build') {
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
-            steps {
-                // Gradle Wrapper
-                sh 'chmod +x gradlew'
-                sh './gradlew wrapper'
-                // Build
-                sh './gradlew build'
-            }
-        }
+//        stage('Build') {
+//            agent {
+//                docker {
+//                    image 'openjdk:11'
+//                }
+//            }
+//            steps {
+//                // Gradle Wrapper
+//                sh 'chmod +x gradlew'
+//                sh './gradlew wrapper'
+//                // Build
+//                sh './gradlew build'
+//            }
+//        }
         stage("docker build & docker push"){
             steps{
                 script{
